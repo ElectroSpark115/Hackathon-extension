@@ -1,32 +1,37 @@
 console.log('This is a popup!');
-//create a class with the constructor function that carries time data
-//create a method to make a reminder that uses those times to show a popup
-    //method should take two arguments, a string message and a time string
-    //method needs to be able to save the reminder time and check it somehow
-    //when the inputted time === real time there should be an alarm/tone that plays and a the message should pop into view on the browser
+//use setTimeout to set a timer for 25 minutes (5seconds for testing)
 
-class Timer{
-    constructor(){
-        const now = new Date()
-        this.timeNowStr = `${now.getHours()}:${now.getMinutes()}`; //returns current time as a string in 24 hour format
-        this.boundReminder = this.setReminder.bind(this)
-    }
+document.getElementById('startButton').addEventListener('click', function () {
+  const aot = 5 * 1000; // amount of time = 5 seconds
 
-    setReminder(remindStr,desiredTime){
-        this.reminderMessage = remindStr;
-        this.reminderTime = desiredTime;
-    }
+  const timeStarted = document.createElement('div');
+  timeStarted.innerText = 'Timer started!';
+  document.querySelector('body').appendChild(timeStarted);
 
-}
+  setTimeout(() => {
+    const now = new Date(); // Thu May 22 2025 13:41:04 GMT-0400 (Eastern Daylight Time)
+    const hours = now.getHours(); // 24 hour current time 13
+    const minutes = now.getMinutes().toString().padStart(2, '0'); // '05'
+    const currentTime = `${hours}:${minutes}`;
+    alert(`It's ${currentTime}! Take a 5 minute break`);
+  }, aot);
+});
 
 /*
-AM/PM:
-const now = new Date();
-const hours = now.getHours();
-const ampm = hours >= 12 ? 'PM' : 'AM';
-const formattedHours = hours % 12 || 12; // Convert to 12-hour format
+document.getElementById('startBtn').addEventListener('click', function () {
+    // const duration = 25 * 60 * 1000; // 25 minutes in milliseconds
+    const duration = 5 * 1000; // ⏱ 5 seconds for testing
 
-const currentTime = `${formattedHours}:${String(now.getMinutes()).padStart(2, '0')} ${ampm}`;
+    alert("Pomodoro started! Timer is running...");
 
-console.log(currentTime);
+    setTimeout(() => {
+        const now = new Date();
+        const hours = now.getHours() % 12 || 12;
+        const minutes = now.getMinutes().toString().padStart(2, '0'); 
+        const ampm = now.getHours() >= 12 ? 'PM' : 'AM';
+        const timeString = `${hours}:${minutes} ${ampm}`;
+
+    alert(`Time's up! Current time is ${timeString}`);
+    }, duration);
+});
 */
